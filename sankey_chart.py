@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 # Define model nodes (the unique categories in this budget cashflow visualization- with no respect to the category 'levels').
-nodes = ["Net Income", "Paycheck Deductions", "Employer-Sponsored Deductions", "Health Insurance", "Retirement Contrubutions", "Taxes", "Gross Income", "Essential Costs", "Housing Costs", "Rent or Mortgage", "Utilities", "Repairs and Maintenance", "Rental or Home Insurance", "Living Costs", "Groceries", "Transportation", "Fuel", "Car Insurance", "Other Insurance", "Life Insurance", "Disability Insurance", "Miscellaneous Essentials", "Personal Care and Health", "Clothing", "Non-essential costs", "Comfort Costs", "Streaming", "Disposable Income", "Miscellaneous Comfort", "Travel Fund", "Short trips and weekends", "Major Vacations", "Education and Professional Development Costs", "Miscellaneous non-essential costs", "Savings and Debts", "Personal Retirement Contrubutions", "Personal Investments", "Emergency Fund", "House Downpayment Fund", "Student Loan Payments"]
+nodes = ["Net Income", "Paycheck\nDeductions", "Employer\nDeductions", "Health Insurance", "Retirement\nContrubutions", "Taxes", "Gross Income", "Essential Costs", "Housing Costs", "Rent or Mortgage", "Utilities", "Maintenance", "Rental\nInsurance", "Living Costs", "Groceries", "Transportation", "Fuel", "Car Insurance", "Other\nInsurance", "Life\nInsurance", "Disability\nInsurance", "Miscellaneous\nEssentials", "Personal Care", "Clothing", "Non-essential\ncosts", "Comfort Costs", "Streaming", "Disposable Income", "Miscellaneous\nComfort", "Travel Fund", "Short trips\nand weekends", "Major Vacations", "Education and\nProfessional Development", "Miscellaneous\nnon-essential costs", "Savings and Debts", "Personal Retirement\nContrubutions", "Personal\nInvestments", "Emergency\nFund", "House\nDownpayment", "Student Loan\nPayments"]
 
 # Define model links (define the network visualizations Sources, Targets, and Values).
 links = {
@@ -23,8 +23,8 @@ links_df = pd.DataFrame(links)
 # Creates the Sankey diagram
 fig = go.Figure(data=[go.Sankey(
     node=dict(
-        pad=15, #determine padding between nodes
-        thickness=20, #sets thickness of the nodes themselves
+        pad=25, #determine padding between nodes, vertically
+        thickness=10, #sets thickness of the nodes themselves
         line=dict(color="black", width=0.5), #color and width of the node borders
         label=nodes,
         color=node_colors
@@ -32,7 +32,7 @@ fig = go.Figure(data=[go.Sankey(
     link=dict(
         source=links_df['source'],
         target=links_df['target'],
-        value=links_df['value']
+        value=links_df['value'],
         color="grey"
     ),
     arrangement="snap" # adjusts the arrangement of nodes to better group nodes in the same budget category. 
