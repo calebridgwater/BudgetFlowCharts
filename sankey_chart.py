@@ -14,6 +14,9 @@ links = {
         [28, 8, 23, 4, 65, 72, 50, 50, 80, 11, 8, 1, 50, 40, 20, 60, 40, 20, 50, 50, 20, 50, 50, 30, 50, 20, 40, 40, 20, 40, 60, 15, 15, 20, 20, 20, 20, 20, 20]
 }
 
+# Define the colors of nodes
+node_colors = ["grey", "blue", "teal", "teal", "teal", "teal", "grey", "red", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "green", "lime", "lime", "lime", "lime", "lime", "lime", "lime", "lime", "lime", "plum", "pink", "pink", "pink", "pink", "pink"]
+
 # Created the DataFrame for the cashflow visualization by making a data table of the links between categories (sources and targets).
 links_df = pd.DataFrame(links)
 
@@ -23,16 +26,25 @@ fig = go.Figure(data=[go.Sankey(
         pad=15, #determine padding between nodes
         thickness=20, #sets thickness of the nodes themselves
         line=dict(color="black", width=0.5), #color and width of the node borders
-        label=nodes
+        label=nodes,
+        color=node_colors
     ),
     link=dict(
         source=links_df['source'],
         target=links_df['target'],
         value=links_df['value']
-    ))])
+        color="grey"
+    ),
+    arrangement="snap" # adjusts the arrangement of nodes to better group nodes in the same budget category. 
+    )])
 
 # update layout
-fig.update_layout(title_text="Budget Cashflow Sankey Diagram", font_size=12)
+fig.update_layout(
+    title_text="Budget Cashflow Sankey Diagram",
+    font_size=12,
+    width=1200,
+    height=800
+    )
 
 # Show the diagram
 fig.show()
