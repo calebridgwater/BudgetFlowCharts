@@ -18,11 +18,11 @@ links = {
 links_df = pd.DataFrame(links)
 
 # Creates the Sankey diagram
-fig = go.Figure(data=[go.sankey(
+fig = go.Figure(data=[go.Sankey(
     node=dict(
-        pad=15,
-        thickness=20,
-        line=dict(color="black", width=0.5),
+        pad=15, #determine padding between nodes
+        thickness=20, #sets thickness of the nodes themselves
+        line=dict(color="black", width=0.5), #color and width of the node borders
         label=nodes
     ),
     link=dict(
