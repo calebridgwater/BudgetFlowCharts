@@ -18,11 +18,11 @@ links = {
     'target': 
         [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     'value': 
-        [28, 72, 50, 50, 50, 30, 75, 10, 5, 20]
+        [28, 72, 36, 18, 18, 21.6, 15.2, 4.32, 2.16, 14.4]
 }
 
 # Define the colors of nodes
-node_colors = ["blue", "red", "red", "orange", "orange", "orange", "green", "lime", "lime", "lime", "pink"]
+node_colors = ["blue", "red", "red", "orange", "darkorange", "darkorange", "green", "lime", "lime", "lime", "pink"]
 
 # Created the DataFrame for the cashflow visualization by making a data table of the links between categories (sources and targets).
 links_df = pd.DataFrame(links)
@@ -31,13 +31,13 @@ links_df = pd.DataFrame(links)
 fig = go.Figure(data=[go.Sankey(
     arrangement="snap", # adjusts the arrangement of nodes to better group nodes in the same budget category. 
     node=dict(
-        pad=25, #determine padding between nodes, vertically
-        thickness=10, #sets thickness of the nodes themselves
+        pad=15, #determine padding between nodes, vertically
+        thickness=20, #sets thickness of the nodes themselves
         line=dict(color="black", width=0.5), #color and width of the node borders
         label=nodes,
         color=node_colors,
-        x=[0.3, 0.4, 0.4, 0.3, 0.4, 0.4, 0.4, 0.3],
-        y=[0.1, 0.1, 0.3, 0.2, 0.1, 0.2, 0.3, 0.3, 0.4, 0.5, 0.4],
+        x=[0.1,0.2, 0.2, 0.4, 0.7, 0.7, 0.4, 0.7, 0.7, 0.7, 0.4],
+        y=[0.1, 0.1, 0.2, 0.1, 0.1, 0.2, 0.3, 0.3, 0.4, 0.5, 0.5],
     ),
     link=dict(
         source=links_df['source'],
