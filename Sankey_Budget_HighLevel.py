@@ -4,13 +4,13 @@ import pandas as pd
 import plotly.graph_objects as go
 
 # Define model nodes (the unique categories in this budget cashflow visualization- with no respect to the category 'levels').
-nodes = ["Net Income", "Paycheck Deductions", 
+nodes =  ["Net Income", "Paycheck Deductions", 
          "Gross Income", "Essential Costs", 
          "Housing Costs",  "Living Costs",  
          "Non-essential costs", "Comfort Costs", 
          "Travel Fund", "Miscellaneous costs", 
-         "Savings and Debts"]
-
+         "Savings and Debts"] 
+        
 # Define model links (define the network visualizations Sources, Targets, and Values).
 links = {
     'source': 
@@ -22,19 +22,22 @@ links = {
 }
 
 # Define the colors of nodes
-node_colors = ["blue", "blue", "red", "orange", "orange", "green", "lime", "lime", "lime", "pink"]
+node_colors = ["blue", "red", "red", "orange", "orange", "orange", "green", "lime", "lime", "lime", "pink"]
 
 # Created the DataFrame for the cashflow visualization by making a data table of the links between categories (sources and targets).
 links_df = pd.DataFrame(links)
 
 # Creates the Sankey diagram
 fig = go.Figure(data=[go.Sankey(
+    arrangement="snap", # adjusts the arrangement of nodes to better group nodes in the same budget category. 
     node=dict(
         pad=25, #determine padding between nodes, vertically
         thickness=10, #sets thickness of the nodes themselves
         line=dict(color="black", width=0.5), #color and width of the node borders
         label=nodes,
-        color=node_colors
+        color=node_colors,
+        x=[0.3, 0.4, 0.4, 0.3, 0.4, 0.4, 0.4, 0.3],
+        y=[0.1, 0.1, 0.3, 0.2, 0.1, 0.2, 0.3, 0.3, 0.4, 0.5, 0.4],
     ),
     link=dict(
         source=links_df['source'],
@@ -42,7 +45,6 @@ fig = go.Figure(data=[go.Sankey(
         value=links_df['value'],
         color="grey"
     ),
-    arrangement="snap" # adjusts the arrangement of nodes to better group nodes in the same budget category. 
     )])
 
 # update layout
